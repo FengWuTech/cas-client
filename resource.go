@@ -65,3 +65,55 @@ func (cas *Cas) GetResourceList(typ int, pid int, name string, page int, pageSiz
 	}, &response)
 	return response.Data.Total, response.Data.List
 }
+
+func (cas *Cas) AddResourceAction(resourceIDList []int, actionIDList []int) bool {
+	var response models.Response
+	cas.HttpPost(URL_RESOURCE_ACTION_ADD, nil, models.RequestBody{
+		"resource_id_list": resourceIDList,
+		"action_id_list":   actionIDList,
+	}, &response)
+	return response.Code == 200
+}
+
+func (cas *Cas) DeleteResourceAction(resourceIDList []int, actionIDList []int) bool {
+	var response models.Response
+	cas.HttpPost(URL_RESOURCE_ACTION_DELETE, nil, models.RequestBody{
+		"resource_id_list": resourceIDList,
+		"action_id_list":   actionIDList,
+	}, &response)
+	return response.Code == 200
+}
+
+func (cas *Cas) GetResourceAction(resourceID int, page int, pageSize int) (int, []models.Action) {
+	var response = struct {
+		models.Response
+		Data struct {
+			Total int             `json:"total"`
+			List  []models.Action `json:"list"`
+		} `json:"data"`
+	}{}
+	cas.HttpGet(URL_RESOURCE_ACTION_LIST, models.Query{
+		"resource_id": resourceID,
+		"page":        page,
+		"page_size":   pageSize,
+	}, &response)
+
+	return response.Data.Total, response.Data.List
+}
+
+func (cas *Cas) GetActionResource(actionID int, page int, pageSize int) (int, []models.Resource) {
+	var response = struct {
+		models.Response
+		Data struct {
+			Total int               `json:"total"`
+			List  []models.Resource `json:"list"`
+		} `json:"data"`
+	}{}
+	cas.HttpGet(URL_ACTION_RESOURCE_LIST, models.Query{
+		"action_id": actionID,
+		"page":      page,
+		"page_size": pageSize,
+	}, &response)
+
+	return response.Data.Total, response.Data.List
+}

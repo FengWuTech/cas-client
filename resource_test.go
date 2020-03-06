@@ -33,3 +33,25 @@ func TestCas_GetResourceList(t *testing.T) {
 	LogV(total)
 	LogV(list)
 }
+
+func TestCas_AddResourceAction(t *testing.T) {
+	res := TestNew().AddResourceAction([]int{80, 81}, []int{8, 9})
+	LogV(res)
+}
+
+func TestCas_DeleteResourceAction(t *testing.T) {
+	res := TestNew().DeleteResourceAction([]int{80, 81}, []int{8, 9})
+	LogV(res)
+}
+
+func TestCas_GetResourceAction(t *testing.T) {
+	total, list := TestNew().GetResourceAction(80, 1, 1)
+	LogV(total)
+	LogV(list)
+}
+
+func TestCas_GetActionResource(t *testing.T) {
+	total, list := TestNew().GetActionResource(8, 1, 1)
+	LogV(total)
+	LogV(list)
+}
