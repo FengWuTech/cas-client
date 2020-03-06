@@ -10,26 +10,6 @@ type Response struct {
 	Data interface{} `json:"data"`
 }
 
-type AddActionResponse struct {
-	Response
-	Data struct {
-		ID int `json:"id"`
-	} `json:"data"`
-}
-
-type GetActionResponse struct {
-	Response
-	Action *Action `json:"data"`
-}
-
-type GetActionListResponse struct {
-	Response
-	Data struct {
-		Total int      `json:"total"`
-		List  []Action `json:"list"`
-	} `json:"data"`
-}
-
 type Model struct {
 	ID         *int       `json:"id"`
 	CreateTime *time.Time `json:"create_time"`
@@ -57,6 +37,7 @@ type Resource struct {
 	Code  *string `json:"code,omitempty"`   // 资源代码
 	Name  *string `json:"name,omitempty"`   // 资源名称
 	Pid   *int    `json:"pid,omitempty"`    // 父id
+	Data  *string `json:"data,omitempty"`   // 资源携带的数据
 }
 
 type ResourceAction struct {

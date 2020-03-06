@@ -3,7 +3,12 @@ package cas_client
 import "cas-client/models"
 
 func (cas *Cas) AddAction(code string, name string) int {
-	var response models.AddActionResponse
+	var response = struct {
+		models.Response
+		Data struct {
+			ID int `json:"id"`
+		} `json:"data"`
+	}{}
 	var requestBody = models.RequestBody{
 		"code": code,
 		"name": name,
@@ -26,7 +31,10 @@ func (cas *Cas) DeleteAction(id int) bool {
 }
 
 func (cas *Cas) GetAction(id int) *models.Action {
-	var response models.GetActionResponse
+	var response = struct {
+		models.Response
+		Action *models.Action `json:"data"`
+	}{}
 	cas.HttpGet(URL_ACTION_GET, models.Query{
 		"id": id,
 	}, &response)
