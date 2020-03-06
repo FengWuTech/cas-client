@@ -46,6 +46,8 @@ func (cas *Cas) GetResource(id int) *models.Resource {
 	return response.Resource
 }
 
+// typ 资源类型，<=100的资源类型值含义由系统定义，>100的资源类型可以由业务方自己定义
+// pid 父级资源id
 func (cas *Cas) GetResourceList(typ int, pid int, name string, page int, pageSize int) (int, []models.Resource) {
 	var response = struct {
 		models.Response
@@ -55,6 +57,7 @@ func (cas *Cas) GetResourceList(typ int, pid int, name string, page int, pageSiz
 		} `json:"data"`
 	}{}
 	cas.HttpGet(URL_RESOURCE_LIST, models.Query{
+		"type":      typ,
 		"pid":       pid,
 		"name":      name,
 		"page":      page,
