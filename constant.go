@@ -34,4 +34,9 @@ const (
 	URL_ROLE_ACTION_DELETE = "/cas/role/action/delete"
 	URL_ROLE_ACTION_LIST   = "/cas/role/action/list"
 	URL_ACTION_ROLE_LIST   = "/cas/action/role/list"
+
+	URL_USER_ROLE_ADD    = "/cas/user/role/add"
+	URL_USER_ROLE_DELETE = "/cas/user/role/delete"
+	URL_USER_ROLE_LIST   = "/cas/user/role/list"
+	URL_ROLE_USER_LIST   = "/cas/role/user/list"
 )
