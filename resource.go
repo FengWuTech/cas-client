@@ -117,3 +117,15 @@ func (cas *Cas) GetActionResource(actionID int, page int, pageSize int) (int, []
 
 	return response.Data.Total, response.Data.List
 }
+
+func (cas *Cas) GetResourceTree(typ int, pid int) []models.ResourceTree {
+	var response = struct {
+		models.Response
+		Data []models.ResourceTree `json:"data"`
+	}{}
+	cas.HttpGet(URL_RESOURCE_TREE, models.Query{
+		"pid":  pid,
+		"type": typ,
+	}, &response)
+	return response.Data
+}

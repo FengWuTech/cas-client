@@ -12,6 +12,7 @@ const (
 	URL_RESOURCE_DELETE = "/cas/resource/delete"
 	URL_RESOURCE_GET    = "/cas/resource/get"
 	URL_RESOURCE_LIST   = "/cas/resource/list"
+	URL_RESOURCE_TREE   = "/cas/resource/tree"
 
 	URL_RESOURCE_ACTION_ADD    = "/cas/resource/action/add"
 	URL_RESOURCE_ACTION_DELETE = "/cas/resource/action/delete"

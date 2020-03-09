@@ -55,3 +55,8 @@ func TestCas_GetActionResource(t *testing.T) {
 	LogV(total)
 	LogV(list)
 }
+
+func TestCas_GetResourceTree(t *testing.T) {
+	tree := TestNew().GetResourceTree(1, 0)
+	LogV(tree)
+}

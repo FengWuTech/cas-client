@@ -40,6 +40,12 @@ type Resource struct {
 	Data  *string `json:"data,omitempty"`   // 资源携带的数据
 }
 
+type ResourceTree struct {
+	Resource Resource       `json:"resource"`
+	Action   []Action       `json:"action"`
+	Children []ResourceTree `json:"children"`
+}
+
 type ResourceAction struct {
 	Model
 	AppID      *int `json:"app_id,omitempty"`      // 应用ID
