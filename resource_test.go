@@ -17,6 +17,15 @@ func TestCas_UpdateResource(t *testing.T) {
 	LogV(res)
 }
 
+func TestCas_UpdateResourceByCode(t *testing.T) {
+	var code = "resource-101"
+	var name = "---1--"
+	res := TestNew().UpdateResourceByCode(code, Resource{
+		Name: &name,
+	})
+	LogV(res)
+}
+
 func TestCas_DeleteResource(t *testing.T) {
 	res := TestNew().DeleteResource(78)
 	LogV(res)

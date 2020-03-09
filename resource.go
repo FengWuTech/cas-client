@@ -27,6 +27,16 @@ func (cas *Cas) UpdateResource(id int, resource Resource) bool {
 	return response.Code == 200
 }
 
+func (cas *Cas) UpdateResourceByCode(code string, resource Resource) bool {
+	var response Response
+	cas.HttpPost(URL_RESOURCE_UPDATE_BY_CODE, nil, RequestBody{
+		"code": code,
+		"name": resource.Name,
+		"data": resource.Data,
+	}, &response)
+	return response.Code == 200
+}
+
 func (cas *Cas) DeleteResource(id int) bool {
 	var response Response
 	cas.HttpPost(URL_RESOURCE_DELETE, nil, RequestBody{

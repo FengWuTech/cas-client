@@ -22,6 +22,15 @@ func (cas *Cas) UpdateAction(id int, action Action) bool {
 	return response.Code == 200
 }
 
+func (cas *Cas) UpdateActionByCode(code string, action Action) bool {
+	var response Response
+	cas.HttpPost(URL_ACTION_UPDATE_BY_CODE, nil, RequestBody{
+		"code": code,
+		"name": action.Name,
+	}, &response)
+	return response.Code == 200
+}
+
 func (cas *Cas) DeleteAction(id int) bool {
 	var response Response
 	cas.HttpPost(URL_ACTION_DELETE, nil, map[string]int{"id": id}, &response)

@@ -19,6 +19,15 @@ func TestCas_UpdateAction(t *testing.T) {
 	LogV(res)
 }
 
+func TestCas_UpdateActionByCode(t *testing.T) {
+	var code = "action-123"
+	var name = "namename-------2------"
+	res := TestNew().UpdateActionByCode(code, Action{
+		Name: &name,
+	})
+	LogV(res)
+}
+
 func TestCas_DeleteAction(t *testing.T) {
 	res := TestNew().DeleteAction(2)
 	LogV(res)

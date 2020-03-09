@@ -26,6 +26,15 @@ func (cas *Cas) UpdateRole(id int, role Role) bool {
 	return response.Code == 200
 }
 
+func (cas *Cas) UpdateRoleByCode(code string, role Role) bool {
+	var response Response
+	cas.HttpPost(URL_ROLE_UPDATE_BY_CODE, nil, RequestBody{
+		"code": code,
+		"name": role.Name,
+	}, &response)
+	return response.Code == 200
+}
+
 func (cas *Cas) DeleteRole(id int) bool {
 	var response Response
 	cas.HttpPost(URL_ROLE_DELETE, nil, RequestBody{

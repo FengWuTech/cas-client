@@ -15,6 +15,15 @@ func TestCas_UpdateRole(t *testing.T) {
 	LogV(res)
 }
 
+func TestCas_UpdateRoleByCode(t *testing.T) {
+	var code = "role-update-2"
+	var name = "rolename"
+	res := TestNew().UpdateRoleByCode(code, Role{
+		Name: &name,
+	})
+	LogV(res)
+}
+
 func TestCas_DeleteRole(t *testing.T) {
 	res := TestNew().DeleteRole(1)
 	LogV(res)
