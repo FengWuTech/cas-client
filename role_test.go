@@ -29,8 +29,18 @@ func TestCas_DeleteRole(t *testing.T) {
 	LogV(res)
 }
 
+func TestCas_DeleteRoleByCode(t *testing.T) {
+	res := TestNew().DeleteRoleByCode("--1--")
+	LogV(res)
+}
+
 func TestCas_GetRole(t *testing.T) {
 	res := TestNew().GetRole(3)
+	LogV(res)
+}
+
+func TestCas_GetRoleByCode(t *testing.T) {
+	res := TestNew().GetRoleByCode("--1--")
 	LogV(res)
 }
 

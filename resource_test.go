@@ -31,8 +31,18 @@ func TestCas_DeleteResource(t *testing.T) {
 	LogV(res)
 }
 
+func TestCas_DeleteResourceByCode(t *testing.T) {
+	res := TestNew().DeleteResourceByCode("--1--")
+	LogV(res)
+}
+
 func TestCas_GetResource(t *testing.T) {
 	res := TestNew().GetResource(79)
+	LogV(res)
+}
+
+func TestCas_GetResourceByCode(t *testing.T) {
+	res := TestNew().GetResourceByCode("---1--")
 	LogV(res)
 }
 

@@ -37,6 +37,14 @@ func (cas *Cas) DeleteAction(id int) bool {
 	return response.Code == 200
 }
 
+func (cas *Cas) DeleteActionByCode(code string) bool {
+	var response Response
+	cas.HttpPost(URL_ACTION_DELETE_BY_CODE, nil, RequestBody{
+		"code": code,
+	}, &response)
+	return response.Code == 200
+}
+
 func (cas *Cas) GetAction(id int) *Action {
 	var response = struct {
 		Response
@@ -44,6 +52,17 @@ func (cas *Cas) GetAction(id int) *Action {
 	}{}
 	cas.HttpGet(URL_ACTION_GET, Query{
 		"id": id,
+	}, &response)
+	return response.Action
+}
+
+func (cas *Cas) GetActionByCode(code string) *Action {
+	var response = struct {
+		Response
+		Action *Action `json:"data"`
+	}{}
+	cas.HttpGet(URL_ACTION_GET_BY_CODE, Query{
+		"code": code,
 	}, &response)
 	return response.Action
 }

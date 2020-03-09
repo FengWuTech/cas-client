@@ -43,6 +43,14 @@ func (cas *Cas) DeleteRole(id int) bool {
 	return response.Code == 200
 }
 
+func (cas *Cas) DeleteRoleByCode(code string) bool {
+	var response Response
+	cas.HttpPost(URL_ROLE_DELETE_BY_CODE, nil, RequestBody{
+		"code": code,
+	}, &response)
+	return response.Code == 200
+}
+
 func (cas *Cas) GetRole(id int) *Role {
 	var response = struct {
 		Response
@@ -50,6 +58,22 @@ func (cas *Cas) GetRole(id int) *Role {
 	}{}
 	cas.HttpGet(URL_ROLE_GET, Query{
 		"id": id,
+	}, &response)
+
+	if response.Role == nil {
+		return nil
+	} else {
+		return response.Role
+	}
+}
+
+func (cas *Cas) GetRoleByCode(code string) *Role {
+	var response = struct {
+		Response
+		Role *Role `json:"data"`
+	}{}
+	cas.HttpGet(URL_ROLE_GET_BY_CODE, Query{
+		"code": code,
 	}, &response)
 
 	if response.Role == nil {

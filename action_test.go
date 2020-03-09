@@ -33,8 +33,18 @@ func TestCas_DeleteAction(t *testing.T) {
 	LogV(res)
 }
 
+func TestCas_DeleteActionByCode(t *testing.T) {
+	res := TestNew().DeleteActionByCode("action-12")
+	LogV(res)
+}
+
 func TestCas_GetAction(t *testing.T) {
 	res := TestNew().GetAction(3)
+	LogV(res)
+}
+
+func TestCas_GetActionByCode(t *testing.T) {
+	res := TestNew().GetActionByCode("--1--")
 	LogV(res)
 }
 

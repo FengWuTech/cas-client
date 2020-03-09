@@ -45,12 +45,29 @@ func (cas *Cas) DeleteResource(id int) bool {
 	return response.Code == 200
 }
 
+func (cas *Cas) DeleteResourceByCode(code string) bool {
+	var response Response
+	cas.HttpPost(URL_RESOURCE_DELETE_BY_CODE, nil, RequestBody{
+		"code": code,
+	}, &response)
+	return response.Code == 200
+}
+
 func (cas *Cas) GetResource(id int) *Resource {
 	var response = struct {
 		Response
 		Resource *Resource `json:"data"`
 	}{}
 	cas.HttpGet(URL_RESOURCE_GET, Query{"id": id}, &response)
+	return response.Resource
+}
+
+func (cas *Cas) GetResourceByCode(code string) *Resource {
+	var response = struct {
+		Response
+		Resource *Resource `json:"data"`
+	}{}
+	cas.HttpGet(URL_RESOURCE_GET_BY_CODE, Query{"code": code}, &response)
 	return response.Resource
 }
 
