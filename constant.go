@@ -1,12 +1,8 @@
 package cas_client
 
 const (
-	RESOURCE_TYPE_MENU     = 1
-	RESOURCE_TYPE_PROJECT  = 2
-	RESOURCE_TYPE_GROUP    = 3
-	RESOURCE_TYPE_BUILDING = 4
-	RESOURCE_TYPE_UNIT     = 5
-	RESOURCE_TYPE_ROOM     = 6
+	RESOURCE_TYPE_MENU = 1
+	RESOURCE_TYPE_DATA = 2
 
 	URL_ACTION_ADD    = "/cas/action/add"
 	URL_ACTION_UPDATE = "/cas/action/update"
