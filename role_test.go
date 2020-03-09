@@ -51,7 +51,7 @@ func TestCas_GetRoleList(t *testing.T) {
 }
 
 func TestCas_AddRoleResource(t *testing.T) {
-	res := TestNew().AddRoleResource([]int{1, 2, 3}, []int{4, 5, 6})
+	res := TestNew().AddRoleResource([]int{4}, []int{83})
 	LogV(res)
 }
 
@@ -73,7 +73,7 @@ func TestCas_GetResourceRole(t *testing.T) {
 }
 
 func TestCas_AddRoleAction(t *testing.T) {
-	res := TestNew().AddRoleAction([]int{3}, []int{1, 2, 3})
+	res := TestNew().AddRoleAction([]int{4}, []int{92})
 	LogV(res)
 }
 

@@ -49,3 +49,36 @@ func (cas *Cas) GetRoleUser(roleID int, page int, pageSize int) (int, []int) {
 	}, &response)
 	return response.Data.Total, response.Data.List
 }
+
+func (cas *Cas) GetUserResource(userID int, resourceType int, page int, pageSize int) (int, []Resource) {
+	var response = struct {
+		Response
+		Data struct {
+			Total int        `json:"total"`
+			List  []Resource `json:"list"`
+		} `json:"data"`
+	}{}
+	cas.HttpGet(URL_USER_RESOURCE_LIST, Query{
+		"user_id":       userID,
+		"resource_type": resourceType,
+		"page":          page,
+		"page_size":     pageSize,
+	}, &response)
+	return response.Data.Total, response.Data.List
+}
+
+func (cas *Cas) GetUserAction(userID int, page int, pageSize int) (int, []Action) {
+	var response = struct {
+		Response
+		Data struct {
+			Total int      `json:"total"`
+			List  []Action `json:"list"`
+		} `json:"data"`
+	}{}
+	cas.HttpGet(URL_USER_ACTION_LIST, Query{
+		"user_id":   userID,
+		"page":      page,
+		"page_size": pageSize,
+	}, &response)
+	return response.Data.Total, response.Data.List
+}
