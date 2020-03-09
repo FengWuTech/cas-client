@@ -1,7 +1,6 @@
 package cas_client
 
 import (
-	"cas-client/models"
 	"testing"
 )
 
@@ -13,7 +12,7 @@ func TestCas_AddAction(t *testing.T) {
 func TestCas_UpdateAction(t *testing.T) {
 	var code = "action-123"
 	var name = "namename"
-	res := TestNew().UpdateAction(2, models.Action{
+	res := TestNew().UpdateAction(2, Action{
 		Code: &code,
 		Name: &name,
 	})

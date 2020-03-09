@@ -1,7 +1,6 @@
 package cas_client
 
 import (
-	"cas-client/models"
 	"testing"
 )
 
@@ -12,7 +11,7 @@ func TestCas_AddResource(t *testing.T) {
 
 func TestCas_UpdateResource(t *testing.T) {
 	var data = "==========="
-	res := TestNew().UpdateResource(78, models.Resource{
+	res := TestNew().UpdateResource(78, Resource{
 		Data: &data,
 	})
 	LogV(res)

@@ -1,4 +1,4 @@
-package models
+package cas_client
 
 import "time"
 

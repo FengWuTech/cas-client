@@ -1,15 +1,13 @@
 package cas_client
 
-import "cas-client/models"
-
 func (cas *Cas) AddAction(code string, name string) int {
 	var response = struct {
-		models.Response
+		Response
 		Data struct {
 			ID int `json:"id"`
 		} `json:"data"`
 	}{}
-	var requestBody = models.RequestBody{
+	var requestBody = RequestBody{
 		"code": code,
 		"name": name,
 	}
@@ -17,39 +15,39 @@ func (cas *Cas) AddAction(code string, name string) int {
 	return response.Data.ID
 }
 
-func (cas *Cas) UpdateAction(id int, action models.Action) bool {
-	var response models.Response
+func (cas *Cas) UpdateAction(id int, action Action) bool {
+	var response Response
 	action.ID = &id
 	cas.HttpPost(URL_ACTION_UPDATE, nil, action, &response)
 	return response.Code == 200
 }
 
 func (cas *Cas) DeleteAction(id int) bool {
-	var response models.Response
+	var response Response
 	cas.HttpPost(URL_ACTION_DELETE, nil, map[string]int{"id": id}, &response)
 	return response.Code == 200
 }
 
-func (cas *Cas) GetAction(id int) *models.Action {
+func (cas *Cas) GetAction(id int) *Action {
 	var response = struct {
-		models.Response
-		Action *models.Action `json:"data"`
+		Response
+		Action *Action `json:"data"`
 	}{}
-	cas.HttpGet(URL_ACTION_GET, models.Query{
+	cas.HttpGet(URL_ACTION_GET, Query{
 		"id": id,
 	}, &response)
 	return response.Action
 }
 
-func (cas *Cas) GetActionList(name string, page int, pageSize int) (int, []models.Action) {
+func (cas *Cas) GetActionList(name string, page int, pageSize int) (int, []Action) {
 	var response = struct {
-		models.Response
+		Response
 		Data struct {
-			Total int             `json:"total"`
-			List  []models.Action `json:"list"`
+			Total int      `json:"total"`
+			List  []Action `json:"list"`
 		} `json:"data"`
 	}{}
-	cas.HttpGet(URL_ACTION_LIST, models.Query{
+	cas.HttpGet(URL_ACTION_LIST, Query{
 		"name":      name,
 		"page":      page,
 		"page_size": pageSize,
