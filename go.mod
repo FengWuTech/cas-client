@@ -1,4 +1,4 @@
-module cas-client
+module github.com/FengWuTech/cas-client
 
 go 1.14
 
