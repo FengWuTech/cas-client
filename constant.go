@@ -49,6 +49,7 @@ const (
 
 	URL_USER_ROLE_ADD      = "/cas/user/role/add"
 	URL_USER_ROLE_DELETE   = "/cas/user/role/delete"
+	URL_USER_ROLE_CLEAR    = "/cas/user/role/clear"
 	URL_USER_ROLE_LIST     = "/cas/user/role/list"
 	URL_ROLE_USER_LIST     = "/cas/role/user/list"
 	URL_USER_RESOURCE_LIST = "/cas/user/resource/list"
