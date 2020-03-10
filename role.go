@@ -99,6 +99,23 @@ func (cas *Cas) GetRoleList(name string, page int, pageSize int) (int, []Role) {
 	return response.Data.Total, response.Data.List
 }
 
+func (cas *Cas) GetSubAppRoleList(subAppID int, name string, page int, pageSize int) (int, []Role) {
+	var response = struct {
+		Response
+		Data struct {
+			Total int    `json:"total"`
+			List  []Role `json:"list"`
+		} `json:"data"`
+	}{}
+	cas.HttpGet(URL_ROLE_LIST, Query{
+		"sub_app_id": subAppID,
+		"name":       name,
+		"page":       page,
+		"page_size":  pageSize,
+	}, &response)
+	return response.Data.Total, response.Data.List
+}
+
 func (cas *Cas) AddRoleResource(roleIDList []int, resourceIDList []int) bool {
 	var response Response
 	cas.HttpPost(URL_ROLE_RESOURCE_ADD, nil, RequestBody{

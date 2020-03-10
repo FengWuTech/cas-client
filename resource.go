@@ -1,6 +1,6 @@
 package cas_client
 
-func (cas *Cas) AddResource(typ int, code string, name string, data string) int {
+func (cas *Cas) AddResource(typ int, code string, name string, data string, description string) int {
 	var response = struct {
 		Response
 		Data struct {
@@ -8,10 +8,11 @@ func (cas *Cas) AddResource(typ int, code string, name string, data string) int 
 		} `json:"data"`
 	}{}
 	cas.HttpPost(URL_RESOURCE_ADD, nil, RequestBody{
-		"type": typ,
-		"code": code,
-		"name": name,
-		"data": data,
+		"type":        typ,
+		"code":        code,
+		"name":        name,
+		"data":        data,
+		"description": description,
 	}, &response)
 	return response.Data.ID
 }

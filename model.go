@@ -18,26 +18,29 @@ type Model struct {
 
 type App struct {
 	Model
-	Code   *string `json:"code,omitempty"`    // 标识
-	Name   *string `json:"name,omitempty"`    // 名称
-	ApiKey *string `json:"api_key,omitempty"` // APIKEY
+	Code        *string `json:"code,omitempty"`        // 标识
+	Name        *string `json:"name,omitempty"`        // 名称
+	ApiKey      *string `json:"api_key,omitempty"`     // APIKEY
+	Description *string `json:"description,omitempty"` // 描述
 }
 
 type Action struct {
 	Model
-	AppID *int    `json:"app_id,omitempty"` // 应用id
-	Code  *string `json:"code,omitempty"`   // 操作代码
-	Name  *string `json:"name,omitempty"`   // 操作名称
+	AppID       *int    `json:"app_id,omitempty"`      // 应用id
+	Code        *string `json:"code,omitempty"`        // 操作代码
+	Name        *string `json:"name,omitempty"`        // 操作名称
+	Description *string `json:"description,omitempty"` // 描述
 }
 
 type Resource struct {
 	Model
-	AppID *int    `json:"app_id,omitempty"` // 应用id
-	Type  *int    `json:"type,omitempty"`   // 资源类型：1菜单
-	Code  *string `json:"code,omitempty"`   // 资源代码
-	Name  *string `json:"name,omitempty"`   // 资源名称
-	Pid   *int    `json:"pid,omitempty"`    // 父id
-	Data  *string `json:"data,omitempty"`   // 资源携带的数据
+	AppID       *int    `json:"app_id,omitempty"`      // 应用id
+	Type        *int    `json:"type,omitempty"`        // 资源类型：1菜单
+	Code        *string `json:"code,omitempty"`        // 资源代码
+	Name        *string `json:"name,omitempty"`        // 资源名称
+	Pid         *int    `json:"pid,omitempty"`         // 父id
+	Data        *string `json:"data,omitempty"`        // 资源携带的数据
+	Description *string `json:"description,omitempty"` // 描述
 }
 
 type ResourceTree struct {

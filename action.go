@@ -1,6 +1,6 @@
 package cas_client
 
-func (cas *Cas) AddAction(code string, name string) int {
+func (cas *Cas) AddAction(code string, name string, description string) int {
 	var response = struct {
 		Response
 		Data struct {
@@ -8,8 +8,9 @@ func (cas *Cas) AddAction(code string, name string) int {
 		} `json:"data"`
 	}{}
 	var requestBody = RequestBody{
-		"code": code,
-		"name": name,
+		"code":        code,
+		"name":        name,
+		"description": description,
 	}
 	cas.HttpPost(URL_ACTION_ADD, nil, requestBody, &response)
 	return response.Data.ID
