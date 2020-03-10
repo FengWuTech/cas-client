@@ -19,15 +19,20 @@ func (cas *Cas) AddAction(code string, name string, description string) int {
 func (cas *Cas) UpdateAction(id int, action Action) bool {
 	var response Response
 	action.ID = &id
-	cas.HttpPost(URL_ACTION_UPDATE, nil, action, &response)
+	cas.HttpPost(URL_ACTION_UPDATE, nil, RequestBody{
+		"code":        action.Code,
+		"name":        action.Name,
+		"description": action.Description,
+	}, &response)
 	return response.Code == 200
 }
 
 func (cas *Cas) UpdateActionByCode(code string, action Action) bool {
 	var response Response
 	cas.HttpPost(URL_ACTION_UPDATE_BY_CODE, nil, RequestBody{
-		"code": code,
-		"name": action.Name,
+		"code":        code,
+		"name":        action.Name,
+		"description": action.Description,
 	}, &response)
 	return response.Code == 200
 }

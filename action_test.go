@@ -5,7 +5,7 @@ import (
 )
 
 func TestCas_AddAction(t *testing.T) {
-	res := TestNew().AddAction("action-12", "action")
+	res := TestNew().AddAction("action-12", "action", "")
 	LogV(res)
 }
 

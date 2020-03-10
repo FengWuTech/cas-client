@@ -20,10 +20,11 @@ func (cas *Cas) AddResource(typ int, code string, name string, data string, desc
 func (cas *Cas) UpdateResource(id int, resource Resource) bool {
 	var response Response
 	cas.HttpPost(URL_RESOURCE_UPDATE, nil, RequestBody{
-		"id":   id,
-		"code": resource.Code,
-		"name": resource.Name,
-		"data": resource.Data,
+		"id":          id,
+		"code":        resource.Code,
+		"name":        resource.Name,
+		"data":        resource.Data,
+		"description": resource.Description,
 	}, &response)
 	return response.Code == 200
 }
@@ -31,9 +32,10 @@ func (cas *Cas) UpdateResource(id int, resource Resource) bool {
 func (cas *Cas) UpdateResourceByCode(code string, resource Resource) bool {
 	var response Response
 	cas.HttpPost(URL_RESOURCE_UPDATE_BY_CODE, nil, RequestBody{
-		"code": code,
-		"name": resource.Name,
-		"data": resource.Data,
+		"code":        code,
+		"name":        resource.Name,
+		"data":        resource.Data,
+		"description": resource.Description,
 	}, &response)
 	return response.Code == 200
 }

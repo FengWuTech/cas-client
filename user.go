@@ -20,7 +20,9 @@ func (cas *Cas) DeleteUserRole(userIDList []int, roleIDList []int) bool {
 
 func (cas *Cas) ClearUserRole(userID int) bool {
 	var response Response
-	cas.HttpPost(URL_USER_ROLE_CLEAR, nil, RequestBody{"user_id": userID}, &response)
+	cas.HttpPost(URL_USER_ROLE_CLEAR, nil, RequestBody{
+		"user_id": userID,
+	}, &response)
 	return response.Code == 200
 }
 
