@@ -7,10 +7,9 @@ import (
 )
 
 type Cas struct {
-	BaseURL  string
-	AppID    string
-	ApiKey   string
-	SubAppID int
+	BaseURL string
+	AppID   string
+	ApiKey  string
 }
 
 func New(baseURL string, appID string, apiKey string) *Cas {
@@ -19,10 +18,6 @@ func New(baseURL string, appID string, apiKey string) *Cas {
 		AppID:   appID,
 		ApiKey:  apiKey,
 	}
-}
-
-func (cas *Cas) SetSubAppID(subAppID int) {
-	cas.SubAppID = subAppID
 }
 
 func (cas *Cas) HttpGet(requestURI string, param map[string]interface{}, ret interface{}) {
