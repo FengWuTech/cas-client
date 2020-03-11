@@ -2,6 +2,22 @@ package cas_client
 
 import "testing"
 
+func TestCas_AddUser(t *testing.T) {
+	res := TestNew().AddUser(71)
+	LogV(res)
+}
+
+func TestCas_DeleteUser(t *testing.T) {
+	res := TestNew().DeleteUser(71)
+	LogV(res)
+}
+
+func TestCas_GetUserList(t *testing.T) {
+	total, list := TestNew().GetUserList(1, "", 1, 1)
+	LogV(total)
+	LogV(list)
+}
+
 func TestCas_AddUserRole(t *testing.T) {
 	res := TestNew().AddUserRole([]int{17}, []int{4})
 	LogV(res)

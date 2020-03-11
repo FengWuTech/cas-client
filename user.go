@@ -1,5 +1,45 @@
 package cas_client
 
+type User struct {
+	AppID     *int    `json:"app_id,omitempty"`
+	CompanyId *int    `json:"company_id,omitempty"`
+	UserId    *int    `json:"user_id,omitempty"`
+	Name      *string `json:"name,omitempty"`
+}
+
+func (cas *Cas) AddUser(userID int) bool {
+	var response Response
+	cas.HttpPost(URL_USER_ADD, nil, RequestBody{
+		"user_id": userID,
+	}, &response)
+	return response.Code == 200
+}
+
+func (cas *Cas) DeleteUser(userID int) bool {
+	var response Response
+	cas.HttpPost(URL_USER_DELETE, nil, RequestBody{
+		"user_id": userID,
+	}, &response)
+	return response.Code == 200
+}
+
+func (cas *Cas) GetUserList(companyID int, name string, page int, pageSize int) (int, []User) {
+	var response = struct {
+		Response
+		Data struct {
+			Total int    `json:"total"`
+			List  []User `json:"list"`
+		} `json:"data"`
+	}{}
+	cas.HttpGet(URL_USER_LIST, Query{
+		"company_id": companyID,
+		"name":       name,
+		"page":       page,
+		"page_size":  pageSize,
+	}, &response)
+	return response.Data.Total, response.Data.List
+}
+
 func (cas *Cas) AddUserRole(userIDList []int, roleIDList []int) bool {
 	var response Response
 	cas.HttpPost(URL_USER_ROLE_ADD, nil, RequestBody{

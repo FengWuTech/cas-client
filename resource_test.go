@@ -5,7 +5,7 @@ import (
 )
 
 func TestCas_AddResource(t *testing.T) {
-	id := TestNew().AddResource(1, "resource-101", "resource-name", "333333333")
+	id := TestNew().AddResource(1, "resource-101", "resource-name", "333333333", "")
 	LogV(id)
 }
 
