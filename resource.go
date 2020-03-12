@@ -1,6 +1,6 @@
 package cas_client
 
-func (cas *Cas) AddResource(typ int, code string, name string, data string, description string) int {
+func (cas *Cas) AddResource(typ int, pid int, code string, name string, data string, description string) int {
 	var response = struct {
 		Response
 		Data struct {
@@ -9,6 +9,7 @@ func (cas *Cas) AddResource(typ int, code string, name string, data string, desc
 	}{}
 	cas.HttpPost(URL_RESOURCE_ADD, nil, RequestBody{
 		"type":        typ,
+		"pid":         pid,
 		"code":        code,
 		"name":        name,
 		"data":        data,
