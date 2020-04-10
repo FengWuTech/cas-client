@@ -130,3 +130,26 @@ func (cas *Cas) GetUserAction(userID int, page int, pageSize int) (int, []Action
 	}, &response)
 	return response.Data.Total, response.Data.List
 }
+
+func (cas *Cas) GetUserResourceCodeList(userID int, resourceType int) []string {
+	var response = struct {
+		Response
+		Data []string `json:"data"`
+	}{}
+	cas.HttpGet(URL_USER_RESOURCE_CODE_LIST, Query{
+		"user_id":       userID,
+		"resource_type": resourceType,
+	}, &response)
+	return response.Data
+}
+
+func (cas *Cas) GetUserActionCodeList(userID int) []string {
+	var response = struct {
+		Response
+		Data []string `json:"data"`
+	}{}
+	cas.HttpGet(URL_USER_ACTION_CODE_LIST, Query{
+		"user_id": userID,
+	}, &response)
+	return response.Data
+}

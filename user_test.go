@@ -51,3 +51,13 @@ func TestCas_GetUserAction(t *testing.T) {
 	LogV(total)
 	LogV(list)
 }
+
+func TestCas_GetUserResourceCodeList(t *testing.T) {
+	list := TestNew().GetUserResourceCodeList(73, 0)
+	LogV(list)
+}
+
+func TestCas_GetUserActionCodeList(t *testing.T) {
+	list := TestNew().GetUserActionCodeList(73)
+	LogV(list)
+}
