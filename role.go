@@ -8,6 +8,7 @@ func (cas *Cas) AddRole(code string, name string, description string) int {
 		} `json:"data"`
 	}{}
 	cas.HttpPost(URL_ROLE_ADD, nil, RequestBody{
+		"company_id":  cas.CompanyID,
 		"code":        code,
 		"name":        name,
 		"description": description,
@@ -19,7 +20,6 @@ func (cas *Cas) UpdateRole(id int, role Role) bool {
 	var response Response
 	cas.HttpPost(URL_ROLE_UPDATE, nil, RequestBody{
 		"id":          id,
-		"code":        role.Code,
 		"name":        role.Name,
 		"description": role.Description,
 	}, &response)
@@ -29,6 +29,7 @@ func (cas *Cas) UpdateRole(id int, role Role) bool {
 func (cas *Cas) UpdateRoleByCode(code string, role Role) bool {
 	var response Response
 	cas.HttpPost(URL_ROLE_UPDATE_BY_CODE, nil, RequestBody{
+		"company_id":  cas.CompanyID,
 		"code":        code,
 		"name":        role.Name,
 		"description": role.Description,
@@ -74,7 +75,8 @@ func (cas *Cas) GetRoleByCode(code string) *Role {
 		Role *Role `json:"data"`
 	}{}
 	cas.HttpGet(URL_ROLE_GET_BY_CODE, Query{
-		"code": code,
+		"company_id": cas.CompanyID,
+		"code":       code,
 	}, &response)
 
 	if response.Role == nil {
@@ -93,9 +95,10 @@ func (cas *Cas) GetRoleList(name string, page int, pageSize int) (int, []Role) {
 		} `json:"data"`
 	}{}
 	cas.HttpGet(URL_ROLE_LIST, Query{
-		"name":      name,
-		"page":      page,
-		"page_size": pageSize,
+		"company_id": cas.CompanyID,
+		"name":       name,
+		"page":       page,
+		"page_size":  pageSize,
 	}, &response)
 	return response.Data.Total, response.Data.List
 }
