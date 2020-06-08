@@ -4,19 +4,22 @@ import (
 	"crypto/md5"
 	"fmt"
 	"github.com/parnurzeal/gorequest"
+	"strconv"
 )
 
 type Cas struct {
-	BaseURL string
-	AppID   string
-	ApiKey  string
+	BaseURL   string
+	AppID     string
+	ApiKey    string
+	CompanyID int
 }
 
-func New(baseURL string, appID string, apiKey string) *Cas {
+func New(baseURL string, appID string, apiKey string, companyID int) *Cas {
 	return &Cas{
-		BaseURL: baseURL,
-		AppID:   appID,
-		ApiKey:  apiKey,
+		BaseURL:   baseURL,
+		AppID:     appID,
+		ApiKey:    apiKey,
+		CompanyID: companyID,
 	}
 }
 
@@ -27,6 +30,7 @@ func (cas *Cas) HttpGet(requestURI string, param map[string]interface{}, ret int
 		Query(param).
 		AppendHeader("token", token).
 		AppendHeader("appcode", cas.AppID).
+		AppendHeader("companyid", strconv.Itoa(cas.CompanyID)).
 		EndStruct(ret)
 }
 
@@ -38,5 +42,6 @@ func (cas *Cas) HttpPost(requestURI string, param map[string]interface{}, body i
 		Query(param).
 		AppendHeader("token", token).
 		AppendHeader("appcode", cas.AppID).
+		AppendHeader("companyid", strconv.Itoa(cas.CompanyID)).
 		EndStruct(ret)
 }
