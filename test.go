@@ -6,7 +6,7 @@ import (
 )
 
 func TestNew() *Cas {
-	return New("http://127.0.0.1:8129", "test", "testestestestestestszetsztrsssssss")
+	return New("http://127.0.0.1:8129", "test", "testestestestestestszetsztrsssssss", 1)
 }
 
 func LogV(value interface{}) {
