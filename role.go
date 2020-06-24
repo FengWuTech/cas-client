@@ -202,3 +202,13 @@ func (cas *Cas) GetActionRole(actionID int, page int, pageSize int) (int, []Role
 	}, &response)
 	return response.Data.Total, response.Data.List
 }
+
+func (cas *Cas) SetRoleAcl(roleID int, resourceIDList []int, actionIDList []int) bool {
+	var response Response
+	cas.HttpGet(URL_ROLE_ACL_SET, Query{
+		"role_id":          roleID,
+		"resource_id_list": resourceIDList,
+		"action_id_list":   actionIDList,
+	}, &response)
+	return response.Code == 200
+}
