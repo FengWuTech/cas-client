@@ -205,7 +205,7 @@ func (cas *Cas) GetActionRole(actionID int, page int, pageSize int) (int, []Role
 
 func (cas *Cas) SetRoleAcl(roleID int, resourceIDList []int, actionIDList []int) bool {
 	var response Response
-	cas.HttpGet(URL_ROLE_ACL_SET, Query{
+	cas.HttpPost(URL_ROLE_ACL_SET, nil, Query{
 		"role_id":          roleID,
 		"resource_id_list": resourceIDList,
 		"action_id_list":   actionIDList,
